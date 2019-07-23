@@ -49,7 +49,7 @@ if not files_start:
 
 last_offset = os.path.getsize(kfile)-1
 
-out = os.path.dirname(kfile)+"/"+os.path.basename(kfile).split(".")[0]
+out = os.path.join(os.path.dirname(kfile), os.path.basename(kfile).split(".")[0])
 os.makedirs(out, exist_ok=True)
 
 size = len(files_start)

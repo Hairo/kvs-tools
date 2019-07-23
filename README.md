@@ -3,7 +3,7 @@ Tools for extracting and archiving koei-tecmo .ktsl2stbin files.
 
 ### kvs_extract.py
 
-Extracts individual .kvs or .kns files from a .ktsl2stbin file (so they can be decoded with [vgmstream](https://github.com/losnoco/vgmstream).
+Extracts individual .kvs or .kns files from a .ktsl2stbin file (so they can be decoded with [vgmstream](https://github.com/losnoco/vgmstream)).
 
 ### kvs_archive.py
 

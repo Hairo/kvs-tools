@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import os
 import argparse
 import mmap
@@ -36,8 +39,14 @@ def find_all(a_str, sub):
         start += len(sub)
 
 byte_str = b"".join(read_bytes(kfile))
-        
+
+ext = ".kvs"
 files_start = list(find_all(byte_str, b'KOVS'))
+
+if not files_start:
+    files_start = list(find_all(byte_str, b'KTSS'))
+    ext = ".kns"
+
 last_offset = os.path.getsize(kfile)-1
 
 os.makedirs("out", exist_ok=True)
@@ -46,6 +55,6 @@ size = len(files_start)
 print(size, "files")
 
 for i in range(size-1):
-    write_file(os.path.join("out", (str(i) if i>=10 else "0"+str(i))+".kvs"), files_start[i], files_start[i+1])
+    write_file(os.path.join("out", (str(i) if i>=10 else "0"+str(i))+ext), files_start[i], files_start[i+1])
 else:
-    write_file(os.path.join("out", str(size-1)+".kvs"), files_start[-1], last_offset)
+    write_file(os.path.join("out", str(size-1)+ext), files_start[-1], last_offset)

@@ -49,12 +49,13 @@ if not files_start:
 
 last_offset = os.path.getsize(kfile)-1
 
-os.makedirs("out", exist_ok=True)
+out = os.path.dirname(kfile)+"/"+os.path.basename(kfile).split(".")[0]
+os.makedirs(out, exist_ok=True)
 
 size = len(files_start)
 print(size, "files")
 
 for i in range(size-1):
-    write_file(os.path.join("out", (str(i) if i>=10 else "0"+str(i))+ext), files_start[i], files_start[i+1])
+    write_file(os.path.join(out, (str(i) if i>=10 else "0"+str(i))+ext), files_start[i], files_start[i+1])
 else:
-    write_file(os.path.join("out", str(size-1)+ext), files_start[-1], last_offset)
+    write_file(os.path.join(out, str(size-1)+ext), files_start[-1], last_offset)
